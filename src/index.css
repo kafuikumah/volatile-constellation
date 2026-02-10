@@ -1,0 +1,271 @@
+/* OECD-Inspired Institutional UI Theme */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Typography: OECD style - Noto Sans */
+    --font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    --line-height: 1.6;
+
+    /* Backgrounds - Apple Grays */
+    --color-bg-primary: #F5F5F7;
+    /* Apple off-white background */
+    --color-bg-secondary: #FFFFFF;
+    /* White cards */
+    --color-bg-tertiary: #E8E8ED;
+    /* Inputs / secondary areas */
+    --color-glass: rgba(255, 255, 255, 0.72);
+    /* Glass effect */
+
+    /* Borders */
+    --color-border: rgba(0, 0, 0, 0.08);
+    --color-border-active: #0071E3;
+
+    /* Text */
+    --color-text-primary: #1D1D1F;
+    /* Almost black */
+    --color-text-secondary: #86868B;
+    /* Apple gray text */
+    --color-text-tertiary: #D2D2D7;
+
+    /* Apple Accent Colors */
+    --color-accent: #0071E3;
+    /* Apple Blue */
+    --color-accent-hover: #0077ED;
+    --color-accent-light: #409CFF;
+    --color-accent-glow: rgba(0, 113, 227, 0.2);
+
+    /* Semantic Colors (Softer, modern tones) */
+    --color-success: #34C759;
+    --color-warning: #FF9F0A;
+    --color-danger: #FF3B30;
+    --color-orange: #FF9500;
+
+    /* Shadows - Soft & Diffuse */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.12);
+
+    /* Spacing & Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    /* Classic iOS card radius */
+    --radius-xl: 24px;
+    --container-max-width: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: var(--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* Buttons - Pill shaped & Modern */
+button {
+    font-family: var(--font-family);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    /* Pill shape */
+    padding: 0.6rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+    background: #F2F2F7;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Modern Cards */
+.card,
+.stat-card,
+.country-card {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    /* Extremely subtle border */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smooth iOS-like ease */
+    overflow: hidden;
+}
+
+.clickable-card {
+    cursor: pointer;
+}
+
+.clickable-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 113, 227, 0.15);
+    /* Subtle blue glow on hover */
+}
+
+/* Stat Card specific overrides */
+.stat-card {
+    padding: 1.5rem;
+}
+
+.country-card {
+    padding: 1.5rem;
+}
+
+/* Dashboard Grid Layout (if not using inline styles) */
+.dashboard-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Inputs */
+input,
+select {
+    background: var(--color-bg-tertiary);
+    /* Light gray input bg */
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-text-primary);
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+/* Scrollbar (Mac-like thin) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C1C1C1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A8A8A8;
+}
+
+/* Utilities */
+.glass-effect {
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.text-secondary {
+    color: var(--color-text-secondary);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Border Accent Refinement (Thinner, more elegant) */
+.border-blue {
+    border-left: 3px solid var(--color-accent);
+}
+
+.border-yellow {
+    border-left: 3px solid var(--color-warning);
+}
+
+.border-orange {
+    border-left: 3px solid var(--color-orange);
+}
+
+.border-red {
+    border-left: 3px solid var(--color-danger);
+}
