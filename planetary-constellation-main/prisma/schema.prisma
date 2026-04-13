@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Country {
+  id             String           @id // 3-letter ISO code
+  name           String
+  fullName       String
+  code           String // 2-letter ISO for flags
+  region         String
+  primaryRec     String
+  incomeLevel    String?
+  governanceTier Int?
+  auJoined       String?
+  values         IndicatorValue[]
+}
+
+model Indicator {
+  id                 String           @id
+  label              String
+  category           String
+  unit               String
+  benchmark          String?
+  benchmarkValue     Float?
+  benchmarkDirection String? // 'above' | 'below'
+  source             String
+  apiUrl             String?
+  apiCode            String?
+  framework          String[]
+  visible            Boolean          @default(true)
+  values             IndicatorValue[]
+}
+
+model IndicatorValue {
+  id          String    @id @default(cuid())
+  countryId   String
+  indicatorId String
+  value       Float?
+  year        Int
+  source      String
+  uploadedAt  DateTime  @default(now())
+  country     Country   @relation(fields: [countryId], references: [id])
+  indicator   Indicator @relation(fields: [indicatorId], references: [id])
+
+  @@index([countryId, indicatorId, year])
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String?
+  role      String // 'admin' | 'editor'
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  indicatorId String?
+  countryId   String?
+  details     String?
+  timestamp   DateTime @default(now())
+}
